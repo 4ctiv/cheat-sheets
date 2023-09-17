@@ -1,8 +1,9 @@
 # Windows Cheat Sheet
 > Version 1.0
 
-## Windows Optimisation
 --------------------------------------------
+## Windows Optimisation
+
 #### Tweak Windows 10+:
 - [Windows Tweak Tool by CTT](https://www.youtube.com/watch?v=tPRv-ATUBe4)
   -  iwr -useb https://christitus.com/win | iex
@@ -14,8 +15,9 @@
 - [Ultimate Windows 11 Gaming Performance Optimization Guide](https://www.youtube.com/watch?v=4o-SZSxygzY)
 - [Oh My Posh and the Windows Terminal](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal)
 
-## Fix Windows problems
 --------------------------------------------
+## Fix Windows problems
+
 DISM.exe [/Online | /Image] /Cleanup-Image /Restorehealth
 
 sfc /scannow <- Do not use when you have UXT or custom icons installed
@@ -27,15 +29,17 @@ sfc /scannow <- Do not use when you have UXT or custom icons installed
 2.1) Zeile 2 Spalte 5 (2-er Hexval.) "03" -> "01" // Set taskbar to Top für main display
 3) HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3
 3.1)
+   
+----------------------------------------------------------------
 
 ## Windows Shortcuts
---------------------------------------------
 [Win] + [Shift] + [Esc] -> Open Task Manager
 [Win] + [Shift] + [S] -> Screenshot Tool
 [Win] + [.] -> Special Text Symbols
 
-## Windows Paths & Commands
 ----------------------------------------------------------------
+## Windows Paths & Commands
+
 Shortcut                             | Description
 -------------------------------------|---------------------------
 %USERPROFILE%                        | Current User home direct.
@@ -48,10 +52,12 @@ setx path "%path%"                   | !DANGEROUS! Refreshes path
 runas /user:$(hostname)\USER COMMAND | run COMMAND as USER
 
 ## Windows cmd
-| cd PATH       | Change path to given path (if pat is on different drive, it is need to also change the drive after) |
-| DRIVE_LETTER: | Change to DRIVE_LETTER as root|
-| dir           | List directory |
-| SET foo=bar   | Variable foo mit parameter bar |
+| Command             | Description                                                                                         |
+|:--------------------|:----------------------------------------------------------------------------------------------------|
+|```cd PATH        ```| Change path to given path (if pat is on different drive, it is need to also change the drive after) |
+|``` DRIVE_LETTER: ```| Change to DRIVE_LETTER as root|
+|``` dir           ```| List directory |
+|``` SET foo=bar   ```| Variable foo mit parameter bar |
 
 ## Start Programms using Start command
 START ["title"] [/D path] [/I] [/MIN] [/MAX] [/SEPARATE | /SHARED]
