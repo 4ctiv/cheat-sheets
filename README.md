@@ -1,5 +1,5 @@
 # cheat-sheets
-This is a collection of my own cheat sheets on various topics. 
+This is a collection (of my own cheat sheets) on various topics related to IT. 
 
 ## Structure
 - Each head topic is a folder containing folders for sub-topics or cheat sheet folders.
