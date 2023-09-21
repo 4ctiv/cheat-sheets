@@ -588,6 +588,13 @@ services:
 
 ## Other
 
+### Linux printer setup (CUPS)
+```shell
+sudo apt install cups ghostscript # Common Unix Printing System & Typescript
+sudo apt install gutenprint # Good printer driver collection
+sudo systemctl enable --now cups.service # Enable cups on system
+```
+
 ### Nice to know stuff
 > | Programm              | Description                       |
 > |:----------------------|:----------------------------------|
