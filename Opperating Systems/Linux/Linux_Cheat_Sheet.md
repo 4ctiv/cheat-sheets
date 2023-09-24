@@ -330,13 +330,13 @@ Prequesit: `btrfs`
 ### NTFS mount parameters
 > Prequisites: `ntfs-3g` 
 > 
-> Mount Options: ```defaults,windows_names,users,uid=activ,gid=activ,rw,exec,nofail,x-gvfs-show,remove_hiberfile```
-> - `users,uid=username,gid=username` will set the given user called `username` ownership (Current user values: `id -u` (userID), `id -g` (groupID), `$USER` (username))
+> Mount Options: ```defaults,windows_names,users,uid=USER,gid=USER,rw,exec,nofail,x-gvfs-show,remove_hiberfile```
+> - `users,uid=USER,gid=USER` will set the given user called `USER` ownership (Current user values: `id -u` (userID), `id -g` (groupID), `$USER` (username))
 > - `rw,exec` enables read, write and execute permissions for the above user
 > - `nofail,x-gvfs-show,remove_hiberfile` still boot if mount not possible, show in user interface, attempt to still mount rwx if previous windows hypbernation exists
 > - `windows_names` Usefull to not get in conflict with reserved characters in windows for files
 >
-> Example (/etc/fstab): ``` LABEL=Data   /media/Data   ntfs-3g   defaults,windows_names,users,uid=username,gid=activ,rw,exec,nofail,x-gvfs-show,remove_hiberfile   0   0```
+> Example (/etc/fstab): ``` LABEL=Data   /media/Data   ntfs-3g   defaults,windows_names,users,uid=USER,gid=USER,rw,exec,nofail,x-gvfs-show,remove_hiberfile   0   0```
 
 ### exFat mount parameters
 > Prequisites: `exfatprogs`
@@ -344,11 +344,11 @@ Prequesit: `btrfs`
 > Mount Options: ```nosuid,nodev,relatime,uid=user,gid=user,fmask=0000,dmask=0000,allow_utime=0022,iocharset=utf8,errors=remount-ro,rw,exec,nofail,x-gvfs-show,user```
 > - [Documentation](https://www.kernel.org/doc/Documentation/filesystems/vfat.txt)
 > 
-> Example (/etc/fstab): ``` LABEL=Game_Drive   /media/Game_Drive   exfat   nosuid,nodev,relatime,uid=activ,gid=activ,fmask=0000,dmask=0000,allow_utime=0022,iocharset=utf8,errors=remount-ro,rw,exec,nofail,x-gvfs-show,user   0   0```
+> Example (/etc/fstab): ``` LABEL=Game_Drive   /media/Game_Drive   exfat   nosuid,nodev,relatime,uid=USER,gid=USER,fmask=0000,dmask=0000,allow_utime=0022,iocharset=utf8,errors=remount-ro,rw,exec,nofail,x-gvfs-show,user   0   0```
 >
 > NOTE: To use steam proton on exfat it is neccessary to mount compdata & shadercache of steam to a unix supported filesystem (because of symlinks)
-> ```/home/username/.local/share/Steam/steamapps/compatdata   /media/Game_Drive/SteamLibrary/steamapps/compatdata   none   defaults,bind,nofail   0   0```
-> ```/home/username/.local/share/Steam/steamapps/shadercache   /media/Game_Drive/SteamLibrary/steamapps/shadercache   none   defaults,bind,nofail   0   0```
+> ```/home/USER/.local/share/Steam/steamapps/compatdata   /media/Game_Drive/SteamLibrary/steamapps/compatdata   none   defaults,bind,nofail   0   0```
+> ```/home/USER/.local/share/Steam/steamapps/shadercache   /media/Game_Drive/SteamLibrary/steamapps/shadercache   none   defaults,bind,nofail   0   0```
 
 
 ### Git usefull commands
@@ -520,27 +520,27 @@ services:
 # Pihole Web-Interface accessable on: `http://localhost:8080/admin`
 ```
 
-#### Nextcloud docker setup
+#### Nextcloud docker setup (btrfs)
 > ##### fstab mount: 
 > 
-> ``` LABEL=Intenso_SSD /media/Intenso_SSD btrfs defaults,subvol=/,compress,autodefrag,inode_cache,nofail 0 0 ```
+>``` LABEL=DRIVE_LABEL /DRIVE_MOUNT_PATH  btrfs defaults,subvol=/,compress,autodefrag,inode_cache,nofail 0 0 ```
 >
->``` curlftpfs#192.168.178.20/Public/Leif_Nextcloud_backups/ /media/Terra/Public/Leif_Nextcloud_backups      fuse    allow_other,user,uid=1000,gid=1000,x-systemd.automount,x-systemd.requires=network-online.target,x-s>  ```
+>``` curlftpfs#IP_ADDRESS/REMOTE_PATH_TO_BACKUPS/ /LOCAL_PATH_TO_BACKUPS  fuse  allow_other,user,uid=USERNAME,gid=USERNAME,x-systemd.automount,x-systemd.requires=network-online.target,x-s>  ```
 
 > ##### btrfs partition setup 
->```mkfs.btrfs /dev/sda1 ```
+>``` mkfs.btrfs /dev/DRIVE_PARTITION ```
 >
->``` btrfs filesystem label /dev/sda1 Intenso_SSD ```
+>``` btrfs filesystem label /dev/DRIVE_PARTITION DRIVE_MOUNT_PATH ```
 >
->``` btrfs su cr /media/Intenso_SSD/@nextcloud ```
+>``` btrfs su cr /DRIVE_MOUNT_PATH/@nextcloud ```
 >
->``` mkdir /media/Intenso_SSD/@nextcloud/nc_data ```
+>``` mkdir /DRIVE_MOUNT_PATH/@nextcloud/nc_data ```
 >
 >```bash
 > # Create docker container 
 > docker run -d -p 4443:4443 -p 443:443 -p 80:80 \\
-> -v /media/Intenso_SSD/@nextcloud/nc_data:/data \\
-> -v /media/Terra/Public/Leif_Nextcloud_backups/ncp-backups:/media/ncp-backups \\
+> -v /DRIVE_MOUNT_PATH/@nextcloud/nc_data:/data \\
+> -v /REMOTE_PATH_TO_BACKUPS/ncp-backups:/LOCAL_PATH_TO_BACKUPS/ncp-backups \\
 > --name nextcloudpi ownyourbits/nextcloudpi  4ctiv.ddns.net 
 >```
 
@@ -590,8 +590,8 @@ services:
 
 ### Linux printer setup (CUPS)
 ```shell
-sudo apt install cups ghostscript # Common Unix Printing System & Typescript
-sudo apt install gutenprint # Good printer driver collection
+sudo apt install cups ghostscript        # Common Unix Printing System & Typescript
+sudo apt install gutenprint              # Printer driver collection
 sudo systemctl enable --now cups.service # Enable cups on system
 ```
 
