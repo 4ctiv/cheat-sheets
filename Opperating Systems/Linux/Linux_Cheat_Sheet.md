@@ -541,7 +541,7 @@ services:
 > docker run -d -p 4443:4443 -p 443:443 -p 80:80 \\
 > -v /DRIVE_MOUNT_PATH/@nextcloud/nc_data:/data \\
 > -v /REMOTE_PATH_TO_BACKUPS/ncp-backups:/LOCAL_PATH_TO_BACKUPS/ncp-backups \\
-> --name nextcloudpi ownyourbits/nextcloudpi  4ctiv.ddns.net 
+> --name nextcloudpi ownyourbits/nextcloudpi  DDNS_URL
 >```
 
 ### KVM Hypervisor Setup
@@ -595,6 +595,23 @@ sudo apt install gutenprint              # Printer driver collection
 sudo systemctl enable --now cups.service # Enable cups on system
 ```
 
+### Linux Antivirus install (ClamAV)
+```
+sudo apt-get install clamav clamav-freshclam clamav-docs clamtk # clamtk GUI App
+sudo freshclam # Update clamav database
+sudo systemctl start clamav-daemon.service && sudo systemctl enable clamav-daemon.service
+
+# Location of config file: /etc/clamav/clamd.conf
+
+# Test if clamAV is working
+curl https://secure.eicar.org/eicar.com.txt | clamscan - | grep "Win.Test.EICAR_HDB-1 FOUND"
+
+## How to scan:
+clamscan PATH_TO_FILE/FILE                                # scann file
+clamscan --recursive --infected PATH_TO_FOLDER/FOLDER     # scann folder
+clamscan -ir DRIVE_ROOT/ | grep FOUND >> clamAvReport.txt # scann drive
+```
+
 ### Nice to know stuff
 > | Programm              | Description                       |
 > |:----------------------|:----------------------------------|
@@ -618,3 +635,4 @@ sudo systemctl enable --now cups.service # Enable cups on system
 > #### <a url="https://www.cyberciti.biz/faq/howto-limit-what-users-can-log-onto-system-via-ssh/">Restrict users login via SSH</a>
 > #### <a url="https://github.com/pi-hole/docker-pi-hole/#quick-start">Pihole Docker</a>
 > #### <a url="https://github.com/chaifeng/ufw-docker#install">UFW + Docker</a>
+> #### <a url="https://wiki.archlinux.org/title/ClamAV">Setup ClamAV</a>
