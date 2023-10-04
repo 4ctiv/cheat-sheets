@@ -97,6 +97,26 @@
 >|``` echo "AllowUsers USER1 USER2 ..." >> /etc/ssh/sshd_config```| Allow only USER1 USER2 ... to login via ssh  |
 >|``` /etc/init.d/sshd restart ```| Restart sshd              |
 
+### SSH-Agent
+- place the following in `nano ~/.config/systemd/user/ssh-agent.service`
+```bash
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+```
+
+- Add to ssh auth config: `mkdir ~/.config/environment.d/ && echo 'SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> ~/.config/environment.d/ssh_auth_socket.conf`
+  - Enable Service: `systemctl --user enable --now ssh-agent`
+  - Add SSH keys: `echo 'AddKeysToAgent  yes' >> ~/.ssh/config`
+    - Set correct file perm's: `chown $USER ~/.ssh/config && chmod 600 ~/.ssh/config`
+
 
 ### Grub password protection
 > #### Generated grub password:
@@ -636,3 +656,4 @@ clamscan -ir DRIVE_ROOT/ | grep FOUND >> clamAvReport.txt # scann drive
 > #### <a url="https://github.com/pi-hole/docker-pi-hole/#quick-start">Pihole Docker</a>
 > #### <a url="https://github.com/chaifeng/ufw-docker#install">UFW + Docker</a>
 > #### <a url="https://wiki.archlinux.org/title/ClamAV">Setup ClamAV</a>
+> #### <a url="https://unix.stackexchange.com/questions/339840/how-to-start-and-use-ssh-agent-as-systemd-service">SSH-Agent service</a>
