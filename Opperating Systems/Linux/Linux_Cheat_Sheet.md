@@ -111,11 +111,14 @@ ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
 [Install]
 WantedBy=default.target
 ```
-
 - Add to ssh auth config: `mkdir ~/.config/environment.d/ && echo 'SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> ~/.config/environment.d/ssh_auth_socket.conf`
   - Enable Service: `systemctl --user enable --now ssh-agent`
   - Add SSH keys: `echo 'AddKeysToAgent  yes' >> ~/.ssh/config`
     - Set correct file perm's: `chown $USER ~/.ssh/config && chmod 600 ~/.ssh/config`
+
+> NOTE: 
+> When `keepassxc` has problems set keepassxc's SSH_AUTH_SOC to `/home/$USER/.ssh/ssh-agent.$(uname -n).sock` & SSH_SK_PROVIDER to `ssh-agent`
+> - Test using `ssh-add -l` in terminal after adding a key via keepassxc
 
 
 ### Grub password protection
