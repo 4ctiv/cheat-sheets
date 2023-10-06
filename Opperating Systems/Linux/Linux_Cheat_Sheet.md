@@ -184,7 +184,7 @@ WantedBy=default.target
 >|:--------------------------------------------------------------------------|:--------------------------------------------------|
 >|``` sudo ufw enable                                                     ```| Enables ufw (also for following boots)            |
 >|``` sudo ufw disable                                                    ```| Disable ufw (also for following boots)            |
->|``` sudo ufw logging on                                                 ```| Enable ufw logging, default path `/var/log/ufw*`  |
+>|``` sudo ufw logging [full/high/low/medium/off/on]                      ```| Enable ufw logging, default path `/var/log/ufw*`  |
 >|``` sudo ufw status numbered                                            ```| Get ufw status and list of set port-rules         |
 >|``` sudo ufw delete RULE ``` v ``` sudo ufw delete NR                   ```| Delete specified RULE / Nr (from status numbered) |
 >|``` sudo ufw app list                                                   ```| Available Application Profiles (alternative to IP)|
@@ -207,6 +207,7 @@ WantedBy=default.target
 > ufw default deny incoming
 > ufw default allow outgoing
 > ufw enable
+> ufw logging medium
 > # Add further ports needed to expose (e.g. 443\tcp )
 > # ufw limit proto [tcp|udp] from [EXTERNAL_SUBNET|EXTERNAL_IP|any] to [any|INTERNAL_SUBNET|INTERNAL_IP] port [PORT|FROM_PORT:TO_PORT] comment "SERVICE"
 > ```
