@@ -424,15 +424,19 @@ Prequesit: `btrfs`
 ### Nextcloud troubbleshooting
 > ```sudo -u www-data php /var/www/nextcloud/occ status``` - get current nc status
 >
-> #### Sync-Client Side
+#### Nextcloud Sync-Client no persistent login
 > Fix login prompt on every run ```yay -S gnome-keyring seahorse```
-> 
-> #### Server Side
+
+#### Server Side
 > ##### Maintenece mode
 > ```sudo -u www-data php /var/www/nextcloud/occ maintenance:mode --on```
 >
 > ```sudo -u www-data php /var/www/nextcloud/occ maintenance:mode --off```
 >
+> ##### Fix 503 error after update
+> Delete opcache: ```mv /data-ro/ncdata/data/.opcache /data-ro/ncdata/data/.opcache_old && mkdir /data-ro/ncdata/data/.opcache```
+> Restart server / docker container
+
 > ##### MariaDB management
 > ```mysqlshow nextcloud``` - list tables of db named "nextcloud" if not existent check
 >
@@ -442,17 +446,17 @@ Prequesit: `btrfs`
 >
 > #### MariaDB remove File-Lock
 > ```DELETE FROM oc_file_locks WHERE 1;``` - Remove all file locks in nextcloud
->
+
 > #### MariaDB statements
 > ``` BEGIN TRANSACTION; {SQL statements}; COMMIT TRANSACTION;``` - best practice for SQL commands that change db 
 >
 > ``` {SQL statements}; COMMIT;``` - best practice simlified version for SQL commands that change db 
->
+
 > ##### OCC update file database (“Got an error reading communication packets”)
 > ```sudo -u www-data php /var/www/nextcloud/occ files:scan-app-data``` - !!! may take a long time !!!
 >
 > ```pstree -apl `pidof cron``` - check ammount of unning crontabs
->
+
 > #### OCC fix database 
 > ```sudo -u www-data php /var/www/nextcloud/occ maintenance:repair``` - fix interrupted upgrades etc.
 >
@@ -478,8 +482,6 @@ Prequesit: `btrfs`
 > NOTE: If you use docker and ufw you also need to install `ufw-docker` for the filerwall to include docker container ports
 > 
 > ```sudo wget -O /usr/local/bin/ufw-docker \ https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker && sudo chmod +x /usr/local/bin/ufw-docker && ufw-docker install```
->
-> 
 
 > | Command                                      | Description                                                    |
 > |:---------------------------------------------|:---------------------------------------------------------------|
@@ -500,6 +502,14 @@ Prequesit: `btrfs`
 > |``` docker cp CONTAINER:SRC_PATH DEST_PATH ```| Copy Files from Container SRC_PATH to Host DEST_PATH            |
 > 
 > Note: Portangaben sind wie folgt: ```host_port:container_port``` e.g. ```8080:80``` host expose ```8080```, container thinks it is exposing ```80```
+
+#### Edit existing docker container (e.g. Ports)
+> `docker stop <container-id>`
+> 'cd /var/lib/docker/containers/<container-id>'
+> 'nano ./hostconfig.json'
+> 'systemctl restart docker' # Note: this will restart whole docker setup
+> 'docker start <container-id>'
+> 'docker ps -a' # Verify the change
 
 #### Docker also use Ipv6
 > Docker deamon config: Add the following to `/etc/docker/daemon.json`
@@ -567,6 +577,11 @@ services:
 > -v /REMOTE_PATH_TO_BACKUPS/ncp-backups:/LOCAL_PATH_TO_BACKUPS/ncp-backups \\
 > --name nextcloudpi ownyourbits/nextcloudpi  DDNS_URL
 >```
+
+> ##### PHP module "imagick" 
+> ``` PHP module "imagick" ```
+> Ignore warning and leave disabled as it is a common security problem.
+> - See: https://stack.watch/product/php/imagick/
 
 ### KVM Hypervisor Setup
 > ```bash
@@ -661,3 +676,4 @@ clamscan -ir DRIVE_ROOT/ | grep FOUND >> clamAvReport.txt # scann drive
 > #### <a url="https://github.com/chaifeng/ufw-docker#install">UFW + Docker</a>
 > #### <a url="https://wiki.archlinux.org/title/ClamAV">Setup ClamAV</a>
 > #### <a url="https://unix.stackexchange.com/questions/339840/how-to-start-and-use-ssh-agent-as-systemd-service">SSH-Agent service</a>
+> #### <a url="https://www.togaware.com/linux/survivor/nextcloud.html">General software setup guides</a>
