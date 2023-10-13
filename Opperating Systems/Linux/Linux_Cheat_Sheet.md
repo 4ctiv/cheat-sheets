@@ -293,8 +293,8 @@ WantedBy=default.target
 
 ### Mounting WebDav
 > - Required packages/drivers: ```davfs2```
-> - Add user to webdav group: ```sudo usermod -aG davfs2```
-> - Mount drive: ```mkdir -p FULL_PATH_MOUNT_FOLDER && mount -t davfs WEBDAV_URL FULL_PATH_MOUNT_FOLDER```
+> - Add user to webdav group: ```sudo usermod -aG davfs2 //Optional```
+> - Mount drive: ```mkdir -p FULL_PATH_MOUNT_FOLDER && sudo mount -t davfs WEBDAV_URL FULL_PATH_MOUNT_FOLDER```
 > - fstab entry: ```WEBDAV_URL FULL_PATH_MOUNT_FOLDER davfs rw,uid=USER, nofail 0 0```
 >   - user credentials: ```mkdir -p ~/.davfs2/ && echo "WEBDAV_URL WEBDAV_USER WEBDAV_PASSWORD" >> ~/.davfs2/secrets && chmod 600 ~/.davfs2/secrets```
 >     - global (fstab) credentials: `/etc/davfs2/secrets`
