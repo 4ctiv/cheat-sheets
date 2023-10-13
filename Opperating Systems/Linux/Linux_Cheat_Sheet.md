@@ -291,6 +291,14 @@ WantedBy=default.target
 > |``` find ROOT_PATH -type f -name REGEX```| Search from given root for file matching regex   |
 > |``` find ROOT_PATH -type d -name REGEX```| Search from given root for folder matching regex |
 
+### Mounting WebDav
+> - Required packages/drivers: ```davfs2```
+> - Add user to webdav group: ```sudo usermod -aG davfs2```
+> - Mount drive: ```mkdir -p FULL_PATH_MOUNT_FOLDER && mount -t davfs WEBDAV_URL FULL_PATH_MOUNT_FOLDER```
+> - fstab entry: ```WEBDAV_URL FULL_PATH_MOUNT_FOLDER davfs rw,uid=USER, nofail 0 0```
+>   - user credentials: ```mkdir -p ~/.davfs2/ && echo "WEBDAV_URL WEBDAV_USER WEBDAV_PASSWORD" >> ~/.davfs2/secrets && chmod 600 ~/.davfs2/secrets```
+>     - global (fstab) credentials: `/etc/davfs2/secrets`
+
 ### Mounting FTP storage
 >> Manual Mount
 >> ```bash
@@ -677,3 +685,4 @@ clamscan -ir DRIVE_ROOT/ | grep FOUND >> clamAvReport.txt # scann drive
 > #### <a url="https://wiki.archlinux.org/title/ClamAV">Setup ClamAV</a>
 > #### <a url="https://unix.stackexchange.com/questions/339840/how-to-start-and-use-ssh-agent-as-systemd-service">SSH-Agent service</a>
 > #### <a url="https://www.togaware.com/linux/survivor/nextcloud.html">General software setup guides</a>
+> #### <a url="https://wiki.archlinux.org/title/Davfs2">WebDav mounts</a>
