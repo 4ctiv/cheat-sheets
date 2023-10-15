@@ -511,6 +511,10 @@ Prequesit: `btrfs`
 > 
 > Note: Portangaben sind wie folgt: ```host_port:container_port``` e.g. ```8080:80``` host expose ```8080```, container thinks it is exposing ```80```
 
+#### Build/Compose docker container
+> - build: `docker build -t NAME --no-cache --build-arg--no-cache --build-arg var="val" .`
+> - compose: `docker-compose up -d --no-cache .`
+
 #### Edit existing docker container (e.g. Ports)
 > `docker stop <container-id>`
 > 'cd /var/lib/docker/containers/<container-id>'
@@ -519,7 +523,7 @@ Prequesit: `btrfs`
 > 'docker start <container-id>'
 > 'docker ps -a' # Verify the change
 
-#### Docker also use Ipv6
+#### Docker use Ipv6
 > Docker deamon config: Add the following to `/etc/docker/daemon.json`
 > ```json
 > {
@@ -534,6 +538,73 @@ Prequesit: `btrfs`
 > - `ip6tables` enables additional IPv6 packet filter rules (network isolation & port mapping)
 >   - parameter requires `experimental` to be set to true
 
+#### Docker compose quick reference
+> See: [The Compose file Docs](https://docs.docker.com/compose/compose-file/03-compose-file/)
+>```docker-compose.yaml
+> version: 3 # Optional, default is latest version
+> services: 
+>   service1: # Add docker container
+>     container_name: example-container
+>     labels: # Add Metadata
+>       com.example.description: "Service with host internet"
+>     build: .
+>     platform: linux/arm64/v8  # Set host platform for container
+>     image: test/test-container # Container Base-Image
+>     configs:
+>      - config1
+>     networks:
+>       hostnet: {}
+>     expose: # Set additional ports avalable from container
+>       - "3000"
+>       - "8000"
+>     links: #TODO
+>     volumes: # Mount static file systems
+>       - volume1:/path-container-folder
+>     tmpfs:   # Mount temporary file systems
+>        - /run
+>     environment:
+>       - ENV_NAME="ENV_VALUE"
+>     logging: # TODO
+>     restart: unless-stopped # no/always/on-failure/unless-stopped
+>   service2:
+> 
+> networks: # Default network "host", also exist "none"
+>   network1: # Name ot docker-network e.g. frontend
+>     name: docker-net1
+>     labels:
+>       com.example.description: "Example network"
+>     driver: custom-driver-1
+>     external: true
+>           config:
+>             subnet: 172.28.0.0/16
+>             ip_range: 172.28.5.0/24
+>             gateway: 172.28.5.254
+>             aux_addresses:
+>               host1: 172.28.1.5
+>               host2: 172.28.1.6
+>   hostnet:
+>     external: true
+>     name: host
+>   nonet:
+>     external: true
+>     name: none
+>
+> volumes:
+>   volume1:
+>     name: "actual-volume-name" # volume ID hard-coded but actuald ID set on runtime
+>     labels:
+>       com.example.description: "Database volume"
+>     external: true # volume already exists & lifecycle is managed externaly
+> configs:
+>  # TODO: https://docs.docker.com/compose/compose-file/08-configs/
+> secrets:
+>   certificate-secret:
+>     external: true
+>     file: ./path-to-file.cert
+>   parameter-secret:
+>     environment: "${OAUTH_TOKEN}" # Value Interpolation (docker build '--build-arg VAR=VAL')
+>  # TODO: https://docs.docker.com/compose/compose-file/09-secrets/
+>```
 
 #### Pi-hole docker setup
 ```compose.yaml
