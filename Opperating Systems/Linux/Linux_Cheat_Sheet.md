@@ -444,6 +444,10 @@ Prequesit: `btrfs`
 > ##### Fix 503 error after update
 > Delete opcache: ```mv /data-ro/ncdata/data/.opcache /data-ro/ncdata/data/.opcache_old && mkdir /data-ro/ncdata/data/.opcache```
 > Restart server / docker container
+>
+> ##### Fix Undefined class constant 'MAJOR_VERSION'
+> 1) Check `/var/www/nextcloud/config/config.php` and (backup first then) remove apps from `'app_install_overwrite'`
+> 2) Check `/var/www/nextcloud/apps/` for the above removed apps folders and remove them (you may want to backup first)
 
 > ##### MariaDB management
 > ```mysqlshow nextcloud``` - list tables of db named "nextcloud" if not existent check
