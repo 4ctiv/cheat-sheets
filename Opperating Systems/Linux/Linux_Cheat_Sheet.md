@@ -113,11 +113,13 @@ WantedBy=default.target
 ```
 - Add to ssh auth config: `mkdir ~/.config/environment.d/ && echo 'SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"' >> ~/.config/environment.d/ssh_auth_socket.conf`
   - Enable Service: `systemctl --user enable --now ssh-agent`
+    - Verify: `systemctl --user status ssh-agent`
   - Add SSH keys: `echo 'AddKeysToAgent  yes' >> ~/.ssh/config`
-    - Set correct file perm's: `chown $USER ~/.ssh/config && chmod 600 ~/.ssh/config`
+    - Set correct file perm's: `chown $USER:$USER -R ~/.ssh/ && chmod 600 -r ~/.ssh/`
+    - list existing identities: `ssh-add -l`
 
 > NOTE: 
-> When `keepassxc` has problems set keepassxc's SSH_AUTH_SOC to `/home/$USER/.ssh/ssh-agent.$(uname -n).sock` & SSH_SK_PROVIDER to `ssh-agent`
+> When `keepassxc` has problems finding the ssh agent set keepassxc's SSH_AUTH_SOC to `/run/user/$(id -u)/ssh-agent.socket` (& SSH_SK_PROVIDER to `ssh-agent`)
 > - Test using `ssh-add -l` in terminal after adding a key via keepassxc
 
 
