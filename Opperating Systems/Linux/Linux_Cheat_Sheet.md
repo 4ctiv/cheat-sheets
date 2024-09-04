@@ -1,11 +1,7 @@
 <body style="background-color:rgb(40, 44, 52);color:lightblue;">
 
 # Linux Cheat Sheet
-> Author: Leif Gittel
-> 
-> Mail: leif.gittel@gmail.com
-> 
-> Version: 1.3.1
+> Tip: If you view this on guithub an outline can be displayed via clicking on the list icon while viewing this file (top right, next to edit button)
 
 ## Linux basics
 
