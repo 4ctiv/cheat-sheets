@@ -7,12 +7,12 @@
 ## Linux basics
 
 ### Aplication menu shortcuts:  
-> |     Configuration Place / Hotkey   |                Description                |
-> |:-----------------------------------|:------------------------------------------|
-> | ``` /usr/share/applications     ```| Systemwide                                |
-> | ``` ~/.local/share/applications ```| User-specific                             |
-> | ``` /etc/bash.bashrc            ```| global bash config file                   |
-> | ``` [STRG] + [ALT] + [F_]       ```| changes between virtual consoles (`_` 0-9 |
+> |     Configuration Place / Hotkey   |                Description                 |
+> |:-----------------------------------|:-------------------------------------------|
+> | ``` /usr/share/applications     ```| Systemwide                                 |
+> | ``` ~/.local/share/applications ```| User-specific                              |
+> | ``` /etc/bash.bashrc            ```| global bash config file                    |
+> | ``` [STRG] + [ALT] + [F_]       ```| changes between virtual consoles (`_` 0-9) |
 
 
 ### Terminal basics
@@ -50,9 +50,9 @@
 > |``` "$*"                                             ```| One String with all run arguments         |
 > |``` "$#"                                             ```| return number of all run arguments        |
 > |``` printf %"$COLUMNS"s  | tr " " "-"       	        ```| Create 1 line of "-" symbols              |
-> |``` seq -s_ $COLUMNS \|tr -d '[:digit:]'      	    ```|               "                           |
+> |``` seq -s_ $COLUMNS \|tr -d '[:digit:]'      	      ```|               "                           |
 > |``` for i in {1..90}; do echo -n "-"; done  	        ```| Repeat 90 times "-"                       |
-> |``` $(hostname -I \| awk '{ print $1 }')     	    ```| Get own local IP                          |
+> |``` $(hostname -I \| awk '{ print $1 }')     	      ```| Get own local IP                          |
 > |``` kill $(pidof "PROGRAMM" \| awk '{print $1}')	    ```| Kill specific programm by name            |
 > |``` head -x TEXT                                     ```| ersten x Zeilen von TEXT (datei)          |
 > |``` tail -x TEXT                                     ```| letzen x Zeilen von TEXT (datei)          |
