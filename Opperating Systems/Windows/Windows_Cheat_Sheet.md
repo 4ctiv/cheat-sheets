@@ -32,10 +32,13 @@ sfc /scannow <- Do not use when you have UXT or custom icons installed
    
 ----------------------------------------------------------------
 
-## Windows Shortcuts
-[Win] + [Shift] + [Esc] -> Open Task Manager
-[Win] + [Shift] + [S] -> Screenshot Tool
-[Win] + [.] -> Special Text Symbols
+## Usefull  Windows Shortcuts
+- [Win] + [E] -> Open windows explorer
+- [Win] + [R] -> "Run" comamnd (e.g. run `regedit.msc` for opening registry)
+- [Win] + [Shift] + [Esc] -> Open Task Manager
+- [Win] + [Shift] + [S] -> Screenshot Tool
+- [Win] + [.] -> Special Text Symbols
+- [SHIFT] + `<Windows restart>` -> Directly Boot into windows recovery
 
 ----------------------------------------------------------------
 ## Windows Paths & Commands
