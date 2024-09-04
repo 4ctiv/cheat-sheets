@@ -11,7 +11,7 @@
 - Tiling window manager: [komorebi](https://github.com/LGUG2Z/komorebi) or [glazewm](https://github.com/glzr-io/glazewm)
 
 #### Enable Ultimate power mode:
--  powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
+-  ```powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61```
 
 #### Resurces
 - [Ultimate Windows 11 Gaming Performance Optimization Guide](https://www.youtube.com/watch?v=4o-SZSxygzY)
@@ -27,10 +27,8 @@ sfc /scannow <- Do not use when you have UXT or custom icons installed
 ## Windows Taskbar to Top Settings
 [Guide](https://appuals.com/change-taskbar-location-windows-11/)
 1) regedit
-2) HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3
-2.1) Zeile 2 Spalte 5 (2-er Hexval.) "03" -> "01" // Set taskbar to Top für main display
-3) HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3
-3.1)
+2) ```HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3```
+2.1) Zeile 2 Spalte 5 (2-er Hexval.) ```03``` -> ```01``` // Set taskbar to Top für main display
    
 ----------------------------------------------------------------
 
@@ -45,16 +43,16 @@ sfc /scannow <- Do not use when you have UXT or custom icons installed
 ----------------------------------------------------------------
 ## Windows Paths & Commands
 
-Shortcut                             | Description
--------------------------------------|---------------------------
-%USERPROFILE%                        | Current User home direct.
-%APPDATA%                            | App Configs etc.
-cd /D [Drive Letter]                 | Change current Disk Drive
-start [name] [exec] [args]           | Starts executables
-winget [command] [args]              | [Windows package manager](#Windows package manager)
-setx path "%path%"                   | !DANGEROUS! Refreshes path
-"TXT TXT" or TXT^ TXT                | Escape Spaces in e.g. cmd
-runas /user:$(hostname)\USER COMMAND | run COMMAND as USER
+Shortcut                                   | Description
+-------------------------------------------|---------------------------
+```%USERPROFILE%                        ```| Current User home direct.
+```%APPDATA%                            ```| App Configs etc.
+```cd /D [Drive Letter]                 ```| Change current Disk Drive
+```start [name] [exec] [args]           ```| Starts executables
+```winget [command] [args]              ```| [Windows package manager](#Windows package manager)
+```setx path "%path%"                   ```| !DANGEROUS! Refreshes path
+```"TXT TXT" or TXT^ TXT                ```| Escape Spaces in e.g. cmd
+```runas /user:$(hostname)\USER COMMAND ```| run COMMAND as USER
 
 ## Windows cmd
 | Command             | Description                                                                                         |
