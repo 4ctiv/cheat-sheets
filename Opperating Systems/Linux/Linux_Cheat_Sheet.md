@@ -7,13 +7,12 @@
 ## Linux basics
 
 ### Aplication menu shortcuts:  
-> |     Configuration Place / Hotkey   |                Description              |
-> |:-----------------------------------|:----------------------------------------|
-> | ``` /usr/share/applications     ```| Systemwide                              |
-> | ``` ~/.local/share/applications ```| User-specific                           |
-> | ``` /etc/bash.bashrc            ```| global bash config file                 |
-> | ``` [STRG] + [ALT] + [F_]       ```| changes between virtual consoles        |
-> | ``` [Win] + [Q]                 ```| changes between virtual consoles        |
+> |     Configuration Place / Hotkey   |                Description                |
+> |:-----------------------------------|:------------------------------------------|
+> | ``` /usr/share/applications     ```| Systemwide                                |
+> | ``` ~/.local/share/applications ```| User-specific                             |
+> | ``` /etc/bash.bashrc            ```| global bash config file                   |
+> | ``` [STRG] + [ALT] + [F_]       ```| changes between virtual consoles (`_` 0-9 |
 
 
 ### Terminal basics
