@@ -1,6 +1,7 @@
 <body style="background-color:rgb(40, 44, 52);color:lightblue;">
-
-v1.0 - Author: 4ctiv
+# Android cheat sheet
+> [!Tip]- Github Web: Outline view
+> If you view this on guithub an outline can be displayed via clicking on the list icon while viewing this file (top right, next to edit button)
 
 ## Hey, for everybody to seeks to modify his/her UMIDIGI S5 Pro (VNDK 29 A/B) here are my resurces to install a GSI, Root, TWRP:
 
