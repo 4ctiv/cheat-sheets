@@ -4,11 +4,13 @@
 --------------------------------------------
 ## Windows Optimisation
 
-#### Tweak Windows 10+:
+#### Tweak Tools:
 - [Windows Tweak Tool by CTT](https://www.youtube.com/watch?v=tPRv-ATUBe4)
   -  iwr -useb https://christitus.com/win | iex
+- [Power toys by Microsoft](https://github.com/microsoft/PowerToys)
+- Tiling window manager: [komorebi](https://github.com/LGUG2Z/komorebi) or [glazewm](https://github.com/glzr-io/glazewm)
 
-#### Ultimate power mode:
+#### Enable Ultimate power mode:
 -  powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 
 #### Resurces
