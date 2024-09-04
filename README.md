@@ -6,7 +6,7 @@ This is a collection (of my own cheat sheets) on various topics related to IT.
 - Each cheat sheet has its own folder, where te main cheat sheet as well as used resources (e.g. images etc.) are stored.
 
 ## Format 
-- Cheat Sheets are written as Jupiter Notebooks (.jpnb), Markdown (.md) or Latex (.)
+- Cheat Sheets are written as Jupiter Notebooks (.jpnb), Markdown (.md) or Latex (.tex)
 - Cheat Sheets do not have spaces in the names, instead use eather '-' or '_'
 
 ## Contribution
