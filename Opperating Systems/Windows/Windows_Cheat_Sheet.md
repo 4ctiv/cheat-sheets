@@ -1,5 +1,6 @@
 # Windows Cheat Sheet
-> Version 1.0
+> [!Tip]- Github Web: Outline view
+> If you view this on guithub an outline can be displayed via clicking on the list icon while viewing this file (top right, next to edit button)
 
 --------------------------------------------
 ## Windows Optimisation
