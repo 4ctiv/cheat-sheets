@@ -42,6 +42,7 @@
 ### Shell Script Tricks
 > |                         Code                   	       |                Description                |
 > |:-------------------------------------------------------|:------------------------------------------|
+> |``` \#!/usr/bin/env                                  ```| Set default shell as interpreter "syntax" |
 > |``` \#                                      	        ```| Comments in Code                          |
 > |``` sudo -v                                          ```| request root privilegies                  |
 > |``` if [["$(sudo -nv)" == ""]];then _; fi;           ```| Check for root privilegies and run _      |
@@ -216,6 +217,7 @@ WantedBy=default.target
 ### Cron Job Sheduler Syntax (cronie package)
 > ```bash
 > # run to edit: sudo crontab -e
+> # run to view: sudo crontab -l
 > #
 > # syntax event based schedule:
 > # event:= reboot, yearly, monthly, weekly, daily, hourly
