@@ -49,7 +49,7 @@
 > |``` "$@"                                             ```| List with all run arguments (as strings)  |
 > |``` "$*"                                             ```| One String with all run arguments         |
 > |``` "$#"                                             ```| return number of all run arguments        |
-> |``` printf %"$COLUMNS"s  | tr " " "-"       	        ```| Create 1 line of "-" symbols              |
+> |``` printf %"$COLUMNS"s  \| tr " " "-"       	      ```| Create 1 line of "-" symbols              |
 > |``` seq -s_ $COLUMNS \|tr -d '[:digit:]'      	      ```|               "                           |
 > |``` for i in {1..90}; do echo -n "-"; done  	        ```| Repeat 90 times "-"                       |
 > |``` $(hostname -I \| awk '{ print $1 }')     	      ```| Get own local IP                          |
