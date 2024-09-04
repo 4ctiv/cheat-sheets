@@ -49,7 +49,7 @@ Shortcut                             | Description
 %APPDATA%                            | App Configs etc.
 cd /D [Drive Letter]                 | Change current Disk Drive
 start [name] [exec] [args]           | Starts executables
-winget [command] [args]              | Windows package manager
+winget [command] [args]              | [Windows package manager](#Windows package manager)
 setx path "%path%"                   | !DANGEROUS! Refreshes path
 "TXT[SPACE]TXT" or ^[SPACE]          | Escape Spaces in e.g. cmd
 runas /user:$(hostname)\USER COMMAND | run COMMAND as USER
