@@ -59,7 +59,7 @@ runas /user:$(hostname)\USER COMMAND | run COMMAND as USER
 |``` dir           ```| List directory |
 |``` SET foo=bar   ```| Variable foo mit parameter bar |
 
-## Start Programms using Start command
+### Start Programms using Start command
 START ["title"] [/D path] [/I] [/MIN] [/MAX] [/SEPARATE | /SHARED]
          [/LOW | /NORMAL | /HIGH | /REALTIME | /ABOVENORMAL | /BELOWNORMAL]
          [/NODE <NUMA node>] [/AFFINITY <hex affinity mask>] [/WAIT] [/B]
@@ -86,3 +86,19 @@ START ["title"] [/D path] [/I] [/MIN] [/MAX] [/SEPARATE | /SHARED]
 | /WAIT	      | Start the application and wait for it to terminate. |
 | command/program |	If it's an internal cmd command or a batch file, then the command processor is run with the /K switch to cmd.exe. The /K switch keeps the window open after the command is run. If it's not an internal cmd command or batch file, the command is a program that runs either as a windowed application or a console application. |
 | parameters	| These are the parameters passed to the command/program. |
+
+### Windows package manager
+> [Winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/) is the Windows 10+ terminal package manager delivered by windows and can be used in `powershell` to instll/remove/update packages similar to linux package managers.
+
+```powershell
+winget search XY
+winget install XY --accept-package-agreements --accept-source-agreements
+```
+
+```powershell
+ winget update --all -h --disable-interactivity --accept-package-agreements --accept-source-agreements
+```
+
+```powershell
+ winget uninstall XY --purge --interactive --all-versions
+```
