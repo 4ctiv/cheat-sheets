@@ -235,7 +235,8 @@ WantedBy=default.target
 > #55  3  *  *  * root /sbin/reboot -r +5
 > #*/30 * * * * ping -c1 1.1.1.1 &>/dev/null && (pidof nextcloud > /dev/null && echo "NC already Running" || nextcloud&) || echo "Offline"
 > ```
-> Note: If a script uses ```notify-send``` add ```export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus export DISPLAY=:0;``` at the beginning
+> - Note: If a script uses ```notify-send``` add ```export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus export DISPLAY=:0;``` at the beginning
+> - Note2: When running crontab scripts environment variables and path may be broken for basic scripts, use `cd ABS_PATH && ...` before your script as well as `#!/usr/bin/env` to yur script as it's first line (if not already `#!/...` is set)
 
 ----
 
